@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alert Desk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" /><link rel="stylesheet" href="modal.css" /><link rel="stylesheet" href="hidden.css" /><link rel="stylesheet" href="response.css" />
+  </head>
+  <body>
+    <section class="login-screen" id="login-screen">
+      <div class="login-card"><a class="brand login-brand" href="#"><span class="brand-mark">✦</span> alertdesk</a><p class="eyebrow">SECURE SIGN IN</p><h1>Your alerts, in one place.</h1><p class="login-copy">Sign in with the username and password provided by your administrator.</p>
+        <form id="sign-in-form"><label class="field-label" for="login-username">Username</label><input id="login-username" autocomplete="username" required placeholder="e.g. maya.chen"><label class="field-label" for="login-password">Password</label><input id="login-password" type="password" autocomplete="current-password" required placeholder="Enter password"><p class="login-error" id="login-error" aria-live="polite"></p><button class="send login-submit">Sign in <span>→</span></button></form>
+        <p class="setup-note">First-time administrator access: <strong>admin</strong> / <strong>welcome123</strong></p>
+      </div>
+    </section>
+    <main class="app-shell" id="app-shell" hidden>
+      <aside class="sidebar"><a class="brand" href="#"><span class="brand-mark">✦</span> alertdesk</a><nav aria-label="Primary navigation"><a class="nav-item active" id="compose-link" href="#compose"><span>⌁</span> Compose</a><a class="nav-item" id="inbox-link" href="#inbox"><span>◷</span> My alerts</a><a class="nav-item admin-only" id="members-link" href="#members"><span>◎</span> Members</a></nav><div class="sidebar-foot"><div class="workspace-icon">N</div><div><strong id="signed-name">Northstar Studio</strong><small id="signed-role">Member</small></div><button id="logout" aria-label="Sign out">↪</button></div></aside>
+      <section class="content"><header class="topbar"><div class="crumb"><span>Alerts</span><i>/</i><strong id="page-label">New alert</strong></div><div class="profile"><span class="avatar" id="profile-avatar">AD</span></div></header>
+        <div class="workspace admin-view" id="admin-view"><section class="composer" aria-labelledby="heading"><div class="heading-row"><div><p class="eyebrow">ADMINISTRATOR</p><h1 id="heading">Send a trusted update.</h1><p class="intro">Only you can compose and send alerts.</p></div><span class="draft">Admin only</span></div><form id="alert-form"><label class="field-label" for="title">Alert title</label><input id="title" maxlength="70" required placeholder="What do members need to know?"><div class="input-meta"><span>Keep it scannable and specific.</span><span id="count">0 / 70</span></div><label class="field-label" for="message">Message</label><textarea id="message" maxlength="500" required placeholder="Add the important context and next step."></textarea><div class="input-meta"><span>Include the context and next step.</span><span id="message-count">0 / 500</span></div></form><section class="response-panel"><p class="eyebrow">MEMBER RESPONSES</p><div id="response-list" class="response-list"></div></section></section><aside class="audience"><div class="audience-head"><div><p class="eyebrow">RECIPIENTS</p><h2>Who needs to know?</h2></div><button id="clear" class="text-button">Clear</button></div><div class="search"><span>⌕</span><input id="search" placeholder="Search members" aria-label="Search members" /></div><div class="select-row"><button class="select-all" id="select-all">Select all</button><span id="selected-count">0 selected</span></div><div class="member-list" id="member-list"></div><div class="audience-footer"><div class="recipient-stack" id="recipient-stack"></div><span id="recipient-label">0 recipients</span></div></aside></div>
+        <section class="member-view" id="member-view" hidden><p class="eyebrow">MY ALERTS</p><h1>Stay in the loop.</h1><p class="intro">Updates sent directly to you by your administrator appear here.</p><div id="inbox-list" class="inbox-list"></div></section>
+        <footer class="actionbar admin-only" id="send-footer"><p><span class="secure-dot"></span> Only selected members will receive this alert.</p><button class="send" type="submit" form="alert-form">Send alert <span>→</span></button></footer>
+      </section>
+    </main>
+    <div class="toast" id="toast" role="status"><span>✓</span><div><strong>Alert sent</strong><small id="toast-copy"></small></div></div>
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+    <section class="modal modal-wide" id="members-modal" aria-labelledby="members-title" hidden><button class="close" data-close="members-modal" aria-label="Close">×</button><div class="modal-title-row"><div><p class="eyebrow">MEMBERS</p><h2 id="members-title">Manage accounts</h2></div><button class="send small" id="add-member">Add member</button></div><p class="modal-copy">Create each member’s name, username, and password. Only the administrator can manage these accounts.</p><div class="manage-head"><span>Name</span><span>Username</span><span>Password</span></div><div id="manage-list" class="manage-list"></div></section>
+    <section class="modal alert-modal" id="alert-modal" aria-labelledby="alert-title" hidden><button class="close" data-close="alert-modal" aria-label="Close">×</button><div class="alert-icon">!</div><p class="eyebrow">NEW ALERT</p><h2 id="alert-title"></h2><p class="alert-message" id="alert-message"></p><div class="alert-from">Sent by your administrator</div><div class="response-actions"><button class="respond confirm" id="modal-confirm">Confirm</button><button class="respond decline" id="modal-decline">Decline</button></div></section>
+    <script src="app.js"></script>
+  </body>
+</html>
